@@ -7,6 +7,12 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Setup') {
+            steps {
+                // install cmake
+                sh 'brew install cmake'
+            }
+        }
         stage('Build') {
             steps {
                 // cmake the project
