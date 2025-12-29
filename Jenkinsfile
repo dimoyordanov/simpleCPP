@@ -10,7 +10,7 @@ pipeline {
         stage('Setup') {
             steps {
                 // install cmake
-                sh 'brew install cmake'
+                sh 'apt-get update && apt-get install -y cmake'
             }
         }
         stage('Build') {
