@@ -2,9 +2,26 @@ pipeline {
     agent any
 
     stages {
-        stage('Hello') {
+        stage 'Checkout' {
             steps {
-                echo 'Hello World!'
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                // cmake the project
+                sh 'cmake .'
+            }
+        }
+        stage('Test') {
+            steps {
+                // just run it
+                sh './main'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
             }
         }
     }
