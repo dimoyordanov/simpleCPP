@@ -20,11 +20,5 @@ pipeline {
                 sh './build/main'
             }
         }
-        stage('Dependency Remove') {
-            steps {
-                sh "apk del gcc make cmake git"
-
-            }
-        }
     }
 }
