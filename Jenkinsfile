@@ -10,13 +10,14 @@ pipeline {
         stage('Build') {
             steps {
                 // cmake the project
-                sh 'cmake .'
+                sh 'cmake -S . -B build'
+                sh 'cmake --build build'
             }
         }
         stage('Test') {
             steps {
                 // just run it
-                sh './main'
+                sh './build/main'
             }
         }
         stage('Dependency Remove') {

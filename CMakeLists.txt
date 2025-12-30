@@ -3,7 +3,7 @@ project(cpp VERSION 0.1.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_COMPILER "g++")
 
-add_executable(cpp main.cpp)
+add_executable(main main.cpp)
 
 include(CTest)
 enable_testing()
