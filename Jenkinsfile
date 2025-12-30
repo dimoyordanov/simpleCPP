@@ -12,9 +12,10 @@ pipeline {
             steps {
                 checkout([
                     $class: 'GitSCM',
-                    branches: [[name: '*/${params.Branch}']],
-                    userRemoteConfigs: [[url: '${params.Repository}']]
+                    branches: [[name: "*/${params.Branch}"]],
+                    userRemoteConfigs: [[url: "${params.Repository}"]]
                 ])
+
                 sh 'git status'
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
