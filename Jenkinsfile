@@ -9,9 +9,6 @@ pipeline {
             cleanWs()
         }
     }
-    environment { 
-        CC = 'g++'
-    }
     parameters {
         string(name: 'Branch', defaultValue: 'main', description: 'Which branch should i build from?')
         string(name: 'Repository', defaultValue: 'https://github.com/dimoyordanov/simpleCPP.git', description: 'Which repository should i build from?')
