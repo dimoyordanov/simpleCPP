@@ -31,6 +31,8 @@ pipeline {
         }
         stage('Build') {
             steps {
+                ""
+                sh 'cppcheck --cppcheck-build-dir=build *.cpp'
                 // cmake the project
                 sh 'cmake -S . -B build'
                 sh 'cmake --build build'
