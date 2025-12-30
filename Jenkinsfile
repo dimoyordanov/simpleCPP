@@ -2,15 +2,14 @@ pipeline {
     agent any
 
     stages {
+        stage('Dependency Init') {
+            steps {
+                sh "apk add --no-cache gcc make cmake git"
+            }
+        }
         stage('Checkout') {
             steps {
                 checkout scm
-            }
-        }
-        stage('Setup') {
-            steps {
-                // install cmake
-                sh 'sudo apt-get update && apt-get install -y cmake'
             }
         }
         stage('Build') {
@@ -25,9 +24,10 @@ pipeline {
                 sh './main'
             }
         }
-        stage('Deploy') {
+        stage('Dependency Remove') {
             steps {
-                echo 'Deploying....'
+                sh "apk del gcc make cmake git"
+
             }
         }
     }
