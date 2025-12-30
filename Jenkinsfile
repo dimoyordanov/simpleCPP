@@ -4,15 +4,19 @@ pipeline {
         CC = 'g++'
     }
     parameters {
-        string(name: 'STATEMENT', defaultValue: 'Hello', description: 'What should I say?')
+        string(name: 'Branch', defaultValue: 'main', description: 'Which branch should i build from?')
+        string(name: 'Repository', defaultValue: 'https://github.com/dimoyordanov/simpleCPP.git', description: 'Which repository should i build from?')
     }
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/${params.Branch}']],
+                    userRemoteConfigs: [[url: '${params.Repository}']]
+                ])
                 sh 'git status'
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-                echo "${params.STATEMENT}"
             }
         }
         stage('Build') {
