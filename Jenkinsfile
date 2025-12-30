@@ -1,5 +1,14 @@
 pipeline {
     agent any
+    options {
+        timestamps()
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
     environment { 
         CC = 'g++'
     }
