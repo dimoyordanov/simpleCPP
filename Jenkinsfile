@@ -3,12 +3,16 @@ pipeline {
     environment { 
         CC = 'g++'
     }
+    parameters {
+        string(name: 'STATEMENT', defaultValue: 'Hello', description: 'What should I say?')
+    }
     stages {
         stage('Checkout') {
             steps {
                 checkout scm
                 sh 'git status'
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                echo "${params.STATEMENT}"
             }
         }
         stage('Build') {
