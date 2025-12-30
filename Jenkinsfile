@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                where{
+                script{
                     if (params.Repository == '' || params.Repository == null) {
                         error "Repository parameter is required."
                     }
