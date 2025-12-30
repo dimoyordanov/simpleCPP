@@ -16,6 +16,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                where{
+                    if (params.Repository == '' || params.Repository == null) {
+                        error "Repository parameter is required."
+                    }
+                    if (params.Branch == '' || params.Branch == null) {
+                        error "Branch parameter is required."   
+                    }
+                    if (params.Repository != 'https://github.com/dimoyordanov/simpleCPP.git') {
+                        error "Trying to run dangerous code!"
+                    }
+                }
                 checkout([
                     $class: 'GitSCM',
                     branches: [[name: "*/${params.Branch}"]],
