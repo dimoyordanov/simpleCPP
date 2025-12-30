@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Dependency Init') {
-            steps {
-                sh "apk add --no-cache gcc make cmake git"
-            }
-        }
         stage('Checkout') {
             steps {
                 checkout scm
